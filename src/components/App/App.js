@@ -2,6 +2,7 @@
  * Import
  */
 import React from "react";
+import LeafletMap from "../LeafletMap";
 
 /**
  * Local import
@@ -15,7 +16,7 @@ import "./app.scss";
  * Code
  */
 const App = () => (
-  <Login />
+  <LeafletMap />
   // {/* <LeafletMap /> */}
 );
 
