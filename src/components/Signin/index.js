@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 /**
  * Import
  */
@@ -9,12 +11,12 @@ import React from "react";
 import Logo from "../../styles/images/logo-saumon.png";
 import Background from "../../styles/images/BG-Login-Signin.jpg";
 // Styles et assets
-import "./login.scss";
+import "./signin.scss";
 
 /**
  * Code
  */
-const Login = () => {
+const Signin = () => {
   // Je récupère le focus d'un input
   const handleFocus = (e) => {
     // J'ajoute la classe focus à l'élément focus, ce qui passe sa bordure en orange.
@@ -36,16 +38,40 @@ const Login = () => {
         backgroundImage: `url(${Background})`,
       }}
     >
-      <div className="login-container">
+      <div className="signin-container">
         <h1>
           <img src={Logo} alt="Polis" />
         </h1>
-        <p className="login-container_subtitle">
+        <p className="signin-container_subtitle">
           En grec ancien πόλις <span>la cité</span>
         </p>
 
         <form action="">
-          <p>Vous devez vous identifier pour contribuer à Polis</p>
+          <div className="signin-container_names">
+            <div>
+              <label htmlFor="last-name">Nom</label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                placeholder="Nom"
+                onClick={handleFocus}
+                onBlur={handleBlur}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="first-name">Prénom</label>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                placeholder="Prénom"
+                onClick={handleFocus}
+                onBlur={handleBlur}
+              />
+            </div>
+          </div>
 
           <div>
             <label htmlFor="email">Email</label>
@@ -71,23 +97,23 @@ const Login = () => {
             />
           </div>
 
-          <p className="lost-password">
-            <a href="#">J'ai perdu</a> mon mot de passe
-          </p>
-
-          <button type="submit" className="inverted-colors">
-            Me connecter
-          </button>
-
-          <p>
-            Je souhaite <a href="">m'inscrire</a> et contribuer à Polis
-          </p>
-
-          <div className="ou-pin-div">
-            <p>ou</p>
+          <div>
+            <label htmlFor="password-confirm">
+              Confirmer votre mot de passe
+            </label>
+            <input
+              type="password"
+              id="password-confirm"
+              name="password-confirm"
+              placeholder="Confirmer votre mot de passe"
+              onClick={handleFocus}
+              onBlur={handleBlur}
+            />
           </div>
 
-          <button type="submit">Entrer en simple visiteur</button>
+          <button type="submit">M'inscrire</button>
+
+          <a href="#">J'ai déjà les identifiants</a>
         </form>
       </div>
     </div>
@@ -97,4 +123,4 @@ const Login = () => {
 /**
  * Export
  */
-export default Login;
+export default Signin;

@@ -18,7 +18,7 @@ const Leaflet = () => {
       animate
       easeLinearity={0.35}
     >
-      <TileLayer url="https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png" />
+      <TileLayer url="https://tile.openstreetmap.org/${z}/${x}/${y}.png" />
 
       <Marker position={[48.864716, 2.349014]}>
         <Popup>Je suis un pop up à Paris</Popup>

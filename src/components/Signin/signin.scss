@@ -10,7 +10,7 @@
     }
 }
 
-.login {
+.signin {
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -43,8 +43,9 @@
             display: flex;
             justify-content: space-between;
 
-            input {
+            div {
                 width: 45%;
+                position: relative;
             }
         }
 
@@ -78,24 +79,10 @@
         form {
             display: flex;
             flex-direction: column;
-            padding: 20px 35px 35px;
+            padding: 35px;
             border-radius: 10px;
             background-color: white;
             justify-content: space-between;
-
-            p {
-                font-size: 0.8em;
-                text-align: center;
-                padding-top: .8em;
-                padding-bottom: 2em;
-
-                &.lost-password {
-                    text-align: left;
-                    color: rgba(191, 191, 191, 1);
-                    padding-top: 0;
-                    margin-top: -.6em;
-                }
-            }
 
             input {
                 margin-bottom: 20px;
@@ -131,39 +118,16 @@
                 margin-top: 10px;
                 transition: 0.4s;
 
-                &.inverted-colors {
-                    color: rgb(217, 140, 94);
-                    background-color: #f2d479;
-
-                    &:hover {
-                        background-color: #e4c771;
-                    }
-                }
-
                 &:hover {
                     background-color: rgb(204, 107, 51);
                 }
             }
 
             a {
-                color: rgb(248, 222, 159);
+                color: rgb(242, 212, 121);
+                font-weight: bold;
                 text-align: center;
                 margin-top: 20px;
-            }
-
-            div.ou-pin-div {
-                margin: .8em auto;
-                width: 2.2em;
-                height: 2.2em;
-                background-image: url('../../styles/images/pins3.png');
-                background-size: cover;
-
-                p {
-                    text-transform: uppercase;
-                    color: #f3d479;
-                    font-weight: bold;
-                    transform: translateX(-.5px);
-                }
             }
         }
     }

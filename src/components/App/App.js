@@ -9,6 +9,7 @@ import LeafletMap from "../LeafletMap";
  */
 // Composants
 import Login from "../Login";
+import Signin from "../Signin";
 // Styles et assets
 import "./app.scss";
 
@@ -16,7 +17,8 @@ import "./app.scss";
  * Code
  */
 const App = () => (
-  <LeafletMap />
+  <Signin />
+  // <Login />
   // {/* <LeafletMap /> */}
 );
 
