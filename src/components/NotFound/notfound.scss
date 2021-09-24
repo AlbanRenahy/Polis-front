@@ -1,0 +1,22 @@
+@keyframes turn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#title {
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.not-found {
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+}

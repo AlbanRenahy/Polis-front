@@ -1,30 +1,36 @@
-/**
- * Import
- */
-@import '../../styles/vars';
+@import 'src/styles/_vars.scss';
 
-/**
- * Styles
- */
-
-#app {
-    padding: 3em;
-    width: 500px;
-    text-align: center;
-    margin: 3em auto;
-    border: 1px solid $border-color;
-    
-    &_title{
-        
-        font-weight: 700;
-        font-size: 2em
-    }
-    
-    &_content{
-        
-        margin: .6em 0;
-        color: #55b1f3;
-        font-style: italic;
-        font-size: 1.2em
-    }
+body {
+    font-family: 'Open Sans', sans-serif;
 }
+
+// .color-1 {
+//     color:#f2d479;
+// }
+// .color-2 {
+//     color:#f2e2c4;
+// }
+// .color-3 {
+//     color:#f2b56b;
+// }
+// .color-4 {
+//     color:#d98c5f;
+// }
+// .color-5 {
+//     color:#59190b;
+// }
+// .bg-color-1 {
+//     background-color: #f2d479;
+// }
+// .bg-color-2 {
+//     background-color: #f2e2c4;
+// }
+// .bg-color-3 {
+//     background-color: #f2b56b;
+// }
+// .bg-color-4 {
+//     background-color: #d98c5f;
+// }
+// .bg-color-5 {
+//     background-color: #59190b;
+// }

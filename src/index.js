@@ -1,14 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App/App';
+/**
+ * NPM import
+ */
+import "@babel/polyfill";
+import React from "react";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import "./styles/index.sass";
 
-ReactDOM.render(
-  <React.StrictMode>
+/**
+ * Local import
+ */
+import App from "./components/App/App";
+import "./styles/index.sass";
+// store
+import store from "./store";
+
+/**
+ * Code
+ */
+const rootComponent = (
+  <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </Provider>
 );
+
+render(rootComponent, document.getElementById("root"));
