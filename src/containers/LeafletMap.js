@@ -9,7 +9,8 @@ import LeafletMap from "../components/LeafletMap/index";
 import {
   updateFormField,
   openDataForm,
-  closeAllModals
+  closeAllModals,
+  getArchitectures
 } from "../store/reducer";
 
 const mapStateToProps = null;
@@ -24,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
+  getArchitectures: () => {
+    dispatch(getArchitectures());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeafletMap);
