@@ -2,8 +2,10 @@ import { connect } from "react-redux";
 
 import {
   updateFormField,
-  closeDataForm,
+  closeAllModals,
   submitBuilding,
+  findAddress,
+  resetFormBuilding,
 } from "../store/reducer";
 
 /**
@@ -13,24 +15,28 @@ import RenseignementDonnees from "../components/LeafletMap/RenseignementDonnees"
 
 // Action Creators
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isDataFormOpen: state.isDataFormOpen,
   nameInput: state.nameInput,
   surfaceInput: state.surfaceInput,
-  adressInput: state.adressInput,
+  addressInput: state.addressInput,
   styleInput: state.styleInput,
   dateInput: state.dateInput,
   architectInput: state.architectInput,
-  promotorInput: state.promotorInput,
-  constructorInput: state.constructorInput,
-  amenageInput: state.amenageInput,
+  promoterInput: state.promoterInput,
+  builderInput: state.builderInput,
+  plannerInput: state.plannerInput,
   urbanistInput: state.urbanistInput,
-  youknowInput: state.youknowInput,
+  descriptionInput: state.descriptionInput,
+  loading: state.loading,
+  architectures: state.architectures,
+  fileInput: state.fileInput,
+  fileText: state.fileText,
 });
 
-const mapDispatchToProps = dispatch => ({
-  closeDataForm: () => {
-    dispatch(closeDataForm());
+const mapDispatchToProps = (dispatch) => ({
+  closeAllModals: () => {
+    dispatch(closeAllModals());
   },
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
@@ -38,9 +44,15 @@ const mapDispatchToProps = dispatch => ({
   submitBuilding: () => {
     dispatch(submitBuilding());
   },
+  findAddress: () => {
+    dispatch(findAddress());
+  },
+  resetFormBuilding: () => {
+    dispatch(resetFormBuilding());
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(RenseignementDonnees);

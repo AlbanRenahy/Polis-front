@@ -1,40 +1,75 @@
+/* eslint-disable radix */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 
 import React from "react";
+import PropTypes from "prop-types";
+import { Dimmer, Loader, List } from "semantic-ui-react";
 import Input from "../../Input";
 import AppareilPhoto from "../../../styles/images/photo-camera.svg";
-
 import "./renseignement.scss";
 
 const RenseignementDonnees = ({
   isDataFormOpen,
-  closeDataForm,
-  addBuilding,
+  closeAllModals,
+  submitBuilding,
   updateFormField,
   nameInput,
   surfaceInput,
-  adressInput,
-  styleInput,
+  addressInput,
   dateInput,
   architectInput,
-  promotorInput,
-  constructorInput,
-  amenageInput,
+  promoterInput,
+  builderInput,
+  plannerInput,
   urbanistInput,
-  youknowInput,
+  descriptionInput,
+  loading,
+  architectures,
+  fileText,
+  findAddress,
+  resetFormBuilding,
 }) => {
-  console.log(updateFormField);
-
   const handleCloseDataForm = (e) => {
     e.preventDefault();
-    console.log("Dataform closed");
-    closeDataForm();
+    resetFormBuilding();
+    closeAllModals();
   };
 
-  const handleAddBuilding = (e) => {
+  const handleSelectChange = (e) => {
+    updateFormField("architectureInput", parseInt(e.target.value));
+  };
+
+  const handleFileChange = (e) => {
+    if (
+      e.target.files[0].type !== "image/png" &&
+      e.target.files[0].type !== "image/jpeg"
+    ) {
+      updateFormField("fileText", "Formats acceptés: JPG, PNG");
+    } else {
+      updateFormField("fileText", e.target.files[0].name);
+    }
+    const readFile = () => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        updateFormField("fileInput", reader.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    };
+
+    if (readFile) {
+      readFile(e.target.files[0]);
+    }
+  };
+
+  const handleSubmitBuilding = (e) => {
     e.preventDefault();
-    console.log("building added");
-    // addBuilding();
+    closeAllModals();
+    submitBuilding();
+  };
+
+  const handleBlur = (e) => {
+    findAddress();
   };
 
   return (
@@ -45,18 +80,31 @@ const RenseignementDonnees = ({
     >
       <div className="renseignement-donnees_relative">
         <a
-          href=""
+          href="#"
           className="renseignement-donnees_close"
           onClick={handleCloseDataForm}
         >
           Fermer
         </a>
-        // il faut faire un bouton de l'appareil photo
-        <img
-          src={AppareilPhoto}
-          alt="Appareil"
-          className="renseignement-donnees_appareil"
-        />
+        <div className="renseignement-donnees_files">
+          <label htmlFor="picture-building">
+            <img
+              src={AppareilPhoto}
+              alt="Appareil"
+              className="renseignement-donnees_appareil"
+            />
+          </label>
+          <input
+            type="file"
+            id="picture-building"
+            className="inputfile"
+            onChange={handleFileChange}
+            accept="image/*"
+          />
+          <List>
+            <List.Item>{fileText}</List.Item>
+          </List>
+        </div>
         <form action="">
           <div className="renseignement-donnees_inputs">
             <div className="renseignement-donnees_primary-infos">
@@ -69,6 +117,7 @@ const RenseignementDonnees = ({
                 onChangeFunction={(input) =>
                   updateFormField("nameInput", input)
                 }
+                disabled={false}
               />
 
               <Input
@@ -80,38 +129,72 @@ const RenseignementDonnees = ({
                 onChangeFunction={(input) =>
                   updateFormField("surfaceInput", input)
                 }
+                disabled={false}
               />
             </div>
 
-            <Input
-              type="text"
-              id="adress"
-              name="adress"
-              placeholder="Adresse"
-              value={adressInput}
-              onChangeFunction={(input) =>
-                updateFormField("adressInput", input)
-              }
-            />
+            <div className="renseignement-donnees_address-container">
+              <Dimmer active={loading} inverted>
+                <Loader inverted />
+              </Dimmer>
+              <Input
+                type="text"
+                id={loading ? "addressloading" : "address"}
+                name="address"
+                placeholder="Adresse"
+                value={addressInput}
+                onBlur={handleBlur}
+                onChangeFunction={(input) =>
+                  updateFormField("addressInput", input)
+                }
+                disabled={false}
+                required
+              />
+            </div>
+            <div className="renseignement-donnees_secondary-infos">
+              <div className="input-container">
+                <select
+                  id="style"
+                  name="style"
+                  className="input select-style"
+                  onChange={handleSelectChange}
+                  onFocus={(event) => {
+                    event.target.classList.add("open");
+                  }}
+                >
+                  <option value={0} defaultValue>
+                    -- Style Architectural --
+                  </option>
+                  {architectures.map((architecture) => (
+                    <option key={architecture.id} value={architecture.id}>
+                      {architecture.name}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="style">Style</label>
+              </div>
 
-            <Input
-              type="text"
-              id="style"
-              name="style"
-              placeholder="Style"
-              value={styleInput}
-              onChangeFunction={(input) => updateFormField("styleInput", input)}
-            />
-
-            <Input
-              type="number"
-              id="date"
-              name="date"
-              placeholder="Année de livraison ou de livraison estimée"
-              value={dateInput}
-              onChangeFunction={(input) => updateFormField("dateInput", input)}
-            />
-
+              <div className="input-container">
+                <input
+                  className="input"
+                  type="number"
+                  min="1900"
+                  max="2099"
+                  step="1"
+                  value={dateInput}
+                  id="date"
+                  name="date"
+                  placeholder="Année de livraison ou de livraison estimée"
+                  onChange={(e) => {
+                    updateFormField("dateInput", e.target.value);
+                  }}
+                  onFocus={(event) => {
+                    event.target.classList.add("open");
+                  }}
+                />
+                <label htmlFor="date">Date</label>
+              </div>
+            </div>
             <Input
               type="text"
               id="architect"
@@ -121,39 +204,43 @@ const RenseignementDonnees = ({
               onChangeFunction={(input) =>
                 updateFormField("architectInput", input)
               }
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="promotor"
-              name="promotor"
+              id="promoter"
+              name="promoter"
               placeholder="Promoteur"
-              value={promotorInput}
+              value={promoterInput}
               onChangeFunction={(input) =>
-                updateFormField("promotorInput", input)
+                updateFormField("promoterInput", input)
               }
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="constructor"
-              name="constructor"
+              id="builder"
+              name="builder"
               placeholder="Constructeur"
-              value={constructorInput}
+              value={builderInput}
               onChangeFunction={(input) =>
-                updateFormField("constructorInput", input)
+                updateFormField("builderInput", input)
               }
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="amenage"
-              name="amenage"
+              id="planner"
+              name="planner"
               placeholder="Aménageur"
-              value={amenageInput}
+              value={plannerInput}
               onChangeFunction={(input) =>
-                updateFormField("amenageInput", input)
+                updateFormField("plannerInput", input)
               }
+              disabled={false}
             />
 
             <Input
@@ -165,35 +252,69 @@ const RenseignementDonnees = ({
               onChangeFunction={(input) =>
                 updateFormField("urbanistInput", input)
               }
+              disabled={false}
             />
 
             <Input
               type="text"
-              id="youknow"
-              name="youknow"
+              id="description"
+              name="description"
               placeholder="Le saviez-vous ?"
-              value={youknowInput}
+              value={descriptionInput}
               onChangeFunction={(input) =>
-                updateFormField("youknowInput", input)
+                updateFormField("descriptionInput", input)
               }
+              disabled={false}
             />
           </div>
-          <div className="renseignement-donnees_submit">
-            <button
-              type="submit"
-              className="form-button"
-              onClick={handleAddBuilding}
+          {addressInput !== "Impossible de trouver l'adresse" && (
+            <div className="renseignement-donnees_submit invisible-mobile">
+              <button
+                type="submit"
+                className="form-button"
+                onClick={handleSubmitBuilding}
+              >
+                Ajouter
+              </button>
+            </div>
+          )}
+        </form>
+        {addressInput !== "Impossible de trouver l'adresse" && (
+          <div className="footer-mobile">
+            <a
+              href="#"
+              className="invisible-desktop btn-submit-mobile"
+              onClick={handleSubmitBuilding}
             >
               Ajouter
-            </button>
+            </a>
           </div>
-        </form>
-        <a href="#" className="renseignement-donnees_share">
-          Partager
-        </a>
+        )}
       </div>
     </div>
   );
+};
+
+RenseignementDonnees.propTypes = {
+  submitBuilding: PropTypes.func.isRequired,
+  closeAllModals: PropTypes.func.isRequired,
+  addressInput: PropTypes.string.isRequired,
+  plannerInput: PropTypes.string.isRequired,
+  architectInput: PropTypes.string.isRequired,
+  builderInput: PropTypes.string.isRequired,
+  dateInput: PropTypes.string.isRequired,
+  isDataFormOpen: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  nameInput: PropTypes.string.isRequired,
+  promoterInput: PropTypes.string.isRequired,
+  surfaceInput: PropTypes.string.isRequired,
+  updateFormField: PropTypes.func.isRequired,
+  urbanistInput: PropTypes.string.isRequired,
+  descriptionInput: PropTypes.string.isRequired,
+  architectures: PropTypes.array.isRequired,
+  fileText: PropTypes.string.isRequired,
+  findAddress: PropTypes.func.isRequired,
+  resetFormBuilding: PropTypes.func.isRequired,
 };
 
 export default RenseignementDonnees;
