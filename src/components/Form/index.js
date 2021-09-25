@@ -2,6 +2,7 @@
  * Import
  */
 import React from "react";
+import PropTypes from "prop-types";
 
 /**
  * Local import
@@ -14,10 +15,11 @@ import "./form.scss";
 /**
  * Code
  */
-const Form = ({ children }) => {
+const Form = ({ children, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("form submitted");
+    onSubmit();
   };
 
   return (
@@ -27,6 +29,9 @@ const Form = ({ children }) => {
   );
 };
 
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 /**
  * Export
  */

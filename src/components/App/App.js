@@ -11,10 +11,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // Containers
 import Signin from "../../containers/Signin";
 import Login from "../../containers/Login";
+import LeafletMap from "../../containers/LeafletMap";
 
 // Dumb
 import Welcome from "../Welcome";
-import LeafletMap from "../LeafletMap";
 import NotFound from "../NotFound";
 import Loading from "../Loading";
 

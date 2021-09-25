@@ -1,13 +1,20 @@
 /*
  * Npm import
  */
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
 /*
  * Local import
  */
 // Reducer
 import reducer from "../store/reducer";
+import polisApiMiddleware from "./polisApiMiddleware";
+import extApiMiddleware from "./extApiMiddleware";
+
+const appliedMiddlewares = applyMiddleware(
+  polisApiMiddleware,
+  extApiMiddleware
+);
 
 /*
  * Code
@@ -17,8 +24,10 @@ if (window.devToolsExtension) {
   devTools.push(window.devToolsExtension());
 }
 
+const enhancers = compose(appliedMiddlewares, ...devTools);
+
 // createStore
-const store = createStore(reducer, ...devTools);
+const store = createStore(reducer, enhancers);
 
 /*
  * Export

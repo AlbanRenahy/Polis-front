@@ -6,17 +6,22 @@ import { connect } from "react-redux";
 import Login from "../components/Login";
 
 // Action Creators
-import { updateFormField } from "../store/reducer";
+import { updateFormField, connectUser } from "../store/reducer";
 
 const mapStateToProps = (state) => ({
-  loginInput: state.loginInput,
+  username: state.username,
   passwordInput: state.passwordInput,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
+  connectUser: () => {
+    dispatch(connectUser());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
