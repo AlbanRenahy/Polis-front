@@ -18,6 +18,7 @@ import Suggestions from "../../containers/Suggestions";
 import Welcome from "../Welcome";
 import NotFound from "../NotFound";
 import Loading from "../Loading";
+import About from "../About";
 
 // Styles et assets
 
@@ -28,6 +29,8 @@ import "./app.scss";
 const App = () => (
   <Switch>
     <Route exact path="/" render={() => <Redirect to="/login" />} />
+
+    <Route exact path="/about" render={() => <About />} />
 
     <Route
       exact
