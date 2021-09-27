@@ -30,10 +30,8 @@ const initialState = {
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
   isDataFormOpen: false,
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
-  isMenuOpen: false,
-  isModifyPanelOpen: false,
+  isMenuOpen: false, 
   didUserVote: false,
-  isProfileOpen: false,
 
   // ************MANAGEMENT OF THE MENU**************/
   searchInput: "", // string
@@ -47,15 +45,10 @@ const initialState = {
   fileInput: "", // Fichier converti prêt à être envoyé
   fileText: "", // Nom du fichier
   nameInput: "",
-  surfaceInput: "",
   addressInput: "",
-  architectureInput: 0,
   dateInput: "",
-  architectInput: "",
-  promoterInput: "",
-  builderInput: "",
-  plannerInput: "",
-  urbanistInput: "",
+  visitTime: 0,
+  categoryInput: "",
   descriptionInput: "",
   loading: false,
 
@@ -66,9 +59,6 @@ const initialState = {
 
   // ************FIELDS OF THE CARD DATA*******
   address: "",
-  architect: "",
-  architecture: { id: 0, name: "" },
-  builder: "",
   certified: false,
   creationDate: 0,
   delivered: true,
@@ -82,11 +72,7 @@ const initialState = {
   ],
   latitude: 0,
   longitude: 0,
-  name: "",
-  planner: "",
-  promoter: "",
-  surface: 0,
-  urbanist: "",
+  category:"",
   user: { firstName: "", lastName: "" },
 
   // ************ERRORS*******
@@ -98,11 +84,9 @@ const initialState = {
   datas: {
     infoBuilding: {
       address: "",
-      architect: "",
-      architecture: { id: 0, name: "" },
-      builder: "",
       certified: false,
       creationDate: 0,
+      visitTime: 0,
       delivered: true,
       description: "",
       id: 0,
@@ -115,10 +99,7 @@ const initialState = {
       latitude: 0,
       longitude: 0,
       name: "",
-      planner: "",
-      promoter: "",
-      surface: 0,
-      urbanist: "",
+      category: "",
       user: { firstName: "", lastName: "" },
     },
     total_votes: 0,

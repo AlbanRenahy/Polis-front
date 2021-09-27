@@ -12,6 +12,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Signin from "../../containers/Signin";
 import Login from "../../containers/Login";
 import LeafletMap from "../../containers/LeafletMap";
+import Suggestions from "../../containers/Suggestions";
 
 // Dumb
 import Welcome from "../Welcome";
@@ -56,6 +57,8 @@ const App = () => (
     />
 
     <Route exact path="/map" render={() => <LeafletMap />} />
+
+    <Route exact path="/list" render={() => <Suggestions />} />
 
     <Route component={NotFound} />
   </Switch>

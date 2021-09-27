@@ -36,7 +36,7 @@ const ViewToggler = ({ toggleView, view }) => (
           to="/list"
           className="no-border-left"
         >
-          Bâtiments
+          Lieux
         </Button>
       </Button.Group>
     </Menu.Menu>

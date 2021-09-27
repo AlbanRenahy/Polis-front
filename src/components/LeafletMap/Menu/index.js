@@ -79,7 +79,7 @@ const TopMenu = ({
             closeAllModals(); openDataForm(false);
           }
           : () => {
-            closeAllModals(); redirect();
+            closeAllModals(); openDataForm(false);
           }}
       >
         <Icon.Group>

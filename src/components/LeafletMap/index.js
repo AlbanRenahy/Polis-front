@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Map as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { geolocated } from "react-geolocated";
 import RenseignementDonnees from "../../containers/RenseignementDonnees";
 import Menu from "../../containers/Menu";
+import DisplayBuilding from "../../containers/DisplayBuilding";
+import Loading from "../Loading";
 import "./leafletmap.scss";
 // pour utiliser des punaises custom
 import pins3 from "../../styles/images/pins3.png";
@@ -39,12 +42,39 @@ class Leaflet extends React.Component {
     openDataForm(e.latlng);
   };
 
+  handleClickMarker = (e) => {
+    const { openDisplayBuilding, closeAllModals } = this.props;
+    closeAllModals();
+    openDisplayBuilding();
+  };
+
   render() {
     const { closeAllModals } = this.props;
+    const {
+      coords,
+      isGeolocationEnabled,
+      center,
+      zoom,
+      userLocalized,
+      updateFormField,
+      loadingWithLoader,
+    } = this.props;
+
+    const defaultCenter = coords
+      ? [coords.latitude, coords.longitude]
+      : [46.7248003746672, 2.9003906250000004];
+
+    if (isGeolocationEnabled && coords && !userLocalized) {
+      // eslint-disable-next-line no-unused-expressions
+      updateFormField("center", [coords.latitude, coords.longitude]);
+      updateFormField("userLocalized", true);
+      updateFormField("zoom", 13);
+    }
     return (
       <>
-      <Menu/>
+        <Menu />
         <RenseignementDonnees />
+        <DisplayBuilding />
         <LeafletMap
           center={[48.864716, 2.349014]}
           zoom={12}
@@ -61,17 +91,11 @@ class Leaflet extends React.Component {
         >
           <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
 
-          <Marker position={[48.864716, 2.349014]} icon={this.myPinUne}>
-            <Popup>Je suis un pop up à Paris</Popup>
-          </Marker>
-          <Marker position={[48.86465, 2.34919]} icon={this.myPinDeux}>
-            <Popup>Je suis un autre pop up à Paris</Popup>
-          </Marker>
           <Marker
-            position={[48.8598, 2.4371999999999616]}
-            icon={this.myPinDeux}
+            position={[48.864716, 2.349014]}
+            icon={this.myPinUne}
+            onClick={this.handleClickMarker}
           >
-            <Popup>Clément habite là</Popup>
           </Marker>
         </LeafletMap>
       </>

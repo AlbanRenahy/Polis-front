@@ -3,32 +3,58 @@ import { connect } from "react-redux";
 /**
  * Local import
  */
-import LeafletMap from "../components/LeafletMap/index";
+import LeafletMap from "../components/LeafletMap";
 
 // Action Creators
+
 import {
-  updateFormField,
   openDataForm,
   closeAllModals,
-  getArchitectures
+  updateFormField,
+  getArchitectures,
+  getBuildings,
+  openDisplayBuilding,
+  closeMenu,
 } from "../store/reducer";
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  buildings: state.buildings,
+  center: state.center,
+  zoom: state.zoom,
+  userLocalized: state.userLocalized,
+  loadingWithLoader: state.loadingWithLoader,
+  isConnected: state.isConnected,
+  fetchingBuildings: state.fetchingBuildings,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   openDataForm: (position) => {
     dispatch(openDataForm(position));
   },
+
   closeAllModals: () => {
     dispatch(closeAllModals());
   },
+
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
+
   getArchitectures: () => {
     dispatch(getArchitectures());
-  }
+  },
+
+  getBuildings: (bounds) => {
+    dispatch(getBuildings(bounds));
+  },
+
+  openDisplayBuilding: (id) => {
+    dispatch(openDisplayBuilding(id));
+  },
+
+  closeMenu: () => {
+    dispatch(closeMenu());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeafletMap);
-
