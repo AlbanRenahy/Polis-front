@@ -132,9 +132,7 @@ const About = () => (
           <div className="main-credits-liste">
             <p>Map: OpenStreetMap & Leaflet-react</p>
             <p>Photos: Wikipedia</p>
-            <p>Design: Clément Eveillard</p>
-            <p>O du logo: Oclock</p>
-            <p>Formation: Oclock</p>
+            <p>Formation: M2i</p>
           </div>
         </div>
       </div>

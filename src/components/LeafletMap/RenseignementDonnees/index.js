@@ -124,7 +124,7 @@ const RenseignementDonnees = ({
                 type="number"
                 id="surface"
                 name="surface"
-                placeholder="m²"
+                placeholder="tempsVisite(en heure)"
                 value={surfaceInput}
                 onChangeFunction={(input) =>
                   updateFormField("surfaceInput", input)
@@ -163,7 +163,7 @@ const RenseignementDonnees = ({
                   }}
                 >
                   <option value={0} defaultValue>
-                    -- Style Architectural --
+                    -- Catégorie --
                   </option>
                   {architectures.map((architecture) => (
                     <option key={architecture.id} value={architecture.id}>
@@ -199,58 +199,10 @@ const RenseignementDonnees = ({
               type="text"
               id="architect"
               name="architect"
-              placeholder="Architecte"
+              placeholder="Ville"
               value={architectInput}
               onChangeFunction={(input) =>
                 updateFormField("architectInput", input)
-              }
-              disabled={false}
-            />
-
-            <Input
-              type="text"
-              id="promoter"
-              name="promoter"
-              placeholder="Promoteur"
-              value={promoterInput}
-              onChangeFunction={(input) =>
-                updateFormField("promoterInput", input)
-              }
-              disabled={false}
-            />
-
-            <Input
-              type="text"
-              id="builder"
-              name="builder"
-              placeholder="Constructeur"
-              value={builderInput}
-              onChangeFunction={(input) =>
-                updateFormField("builderInput", input)
-              }
-              disabled={false}
-            />
-
-            <Input
-              type="text"
-              id="planner"
-              name="planner"
-              placeholder="Aménageur"
-              value={plannerInput}
-              onChangeFunction={(input) =>
-                updateFormField("plannerInput", input)
-              }
-              disabled={false}
-            />
-
-            <Input
-              type="text"
-              id="urbanist"
-              name="urbanist"
-              placeholder="Urbaniste"
-              value={urbanistInput}
-              onChangeFunction={(input) =>
-                updateFormField("urbanistInput", input)
               }
               disabled={false}
             />
