@@ -5,11 +5,11 @@ import {
   openModifyPanel,
   userVote,
   updateFormField,
-} from "../store/reducer";
+} from "../../store/reducer";
 /**
  * Local import
  */
-import DisplayBuilding from "../components/LeafletMap/DisplayBuilding";
+import DisplayBuilding from "../../components/LeafletMap/DisplayBuilding/DisplayBuildingNotreDameAmiens";
 
 // Action Creators
 

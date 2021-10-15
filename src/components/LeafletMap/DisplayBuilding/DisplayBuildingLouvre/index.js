@@ -5,9 +5,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Dimmer, Loader, Icon } from "semantic-ui-react";
-import MainPicture from "../../../styles/images/louvre.jpg";
+import MainPicture from "../../../../styles/images/louvre.jpg";
 
-import "./DisplayBuilding.scss";
+import "../../DisplayBuilding/DisplayBuilding.scss";
 
 const DisplayBuilding = ({
   isDisplayBuildingOpen,
