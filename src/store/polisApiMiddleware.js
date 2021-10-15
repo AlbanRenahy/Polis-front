@@ -5,6 +5,8 @@ import axios from "axios";
 import {
   SUBMIT_BUILDING,
   GET_BUILDINGS,
+  GET_CATEGORIES,
+  setCategories,
   setBuildings,
   createMarker,
   OPEN_DISPLAY_BUILDING,
@@ -12,7 +14,7 @@ import {
   resetFormBuilding,
 } from "./reducer";
 
-const polisApi = "https://localhost:8080";
+const polisApi = "http://localhost:8080";
 // eslint-disable-next-line consistent-return
 const polisApiMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -85,6 +87,17 @@ const polisApiMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.message);
+        });
+      break;
+    case GET_CATEGORIES:
+      axios
+        .get(`${polisApi}/categories`)
+        .then((response) => {
+          // console.log('Categories', response.data['hydra:member']);
+          store.dispatch(setCategories(response.data));
+        })
+        .catch((error) => {
+          // console.log(error.message);
         });
       break;
     default:

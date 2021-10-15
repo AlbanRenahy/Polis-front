@@ -135,7 +135,6 @@ DisplayBuilding.propTypes = {
   didUserVote: PropTypes.bool.isRequired,
   isConnected: PropTypes.bool.isRequired,
   isDisplayBuildingOpen: PropTypes.bool.isRequired,
-  isModifyPanelOpen: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   openModifyPanel: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,

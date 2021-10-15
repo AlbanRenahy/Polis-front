@@ -48,14 +48,14 @@ const initialState = {
   addressInput: "",
   dateInput: "",
   visitTime: 0,
-  categoryInput: "",
+  categoryInput: {id: 0},
   descriptionInput: "",
   loading: false,
 
   // Datas component did mount
-  architectures: [],
   buildings: [],
   fetchingBuildings: false,
+  categories: [],
 
   // ************FIELDS OF THE CARD DATA*******
   address: "",
@@ -99,7 +99,7 @@ const initialState = {
       latitude: 0,
       longitude: 0,
       name: "",
-      category: "",
+      category: {id: 0},
       user: { firstName: "", lastName: "" },
     },
     total_votes: 0,
@@ -135,8 +135,6 @@ export const SET_BUILDINGS_LIST_DATA = "SET_BUILDINGS_LIST_DATA";
 export const OPEN_DATA_FORM_RESPONSE = "OPEN_DATA_FORM_RESPONSE";
 export const CLOSE_ALL_MODALS = "CLOSE_ALL_MODALS";
 export const SUBMIT_BUILDING = "SUBMIT_BULDING";
-export const SET_ARCHITECTURES = "SET_ARCHITECTURES";
-export const GET_ARCHITECTURES = "GET_ARCHITECTURES";
 export const GET_BUILDINGS = "GET_BUILDINGS";
 export const SET_BUILDINGS = "SET_BUILDINGS";
 export const CREATE_MARKER = "CREATE_MARKER";
@@ -158,6 +156,8 @@ export const EMAIL_ERROR = "EMAIL_ERROR";
 export const NEW_PASSWORD_ERRORS = "NEW_PASSWORD_ERRORS";
 export const OPEN_MODIFY_PANEL = "OPEN_MODIFY_PANEL";
 export const USER_VOTE = "USER_VOTE";
+export const SET_CATEGORIES = "SET_CATEGORIES";
+export const GET_CATEGORIES = "GET_CATEGORIES";
 /**
  * Traitements
  */
@@ -291,11 +291,6 @@ const reducer = (state = initialState, action = {}) => {
         isModifyPanelOpen: false,
         // Les futurs modals à fermer
       };
-    case SET_ARCHITECTURES:
-      return {
-        ...state,
-        architectures: action.architectures,
-      };
     case GET_BUILDINGS:
       return {
         ...state,
@@ -359,13 +354,7 @@ const reducer = (state = initialState, action = {}) => {
         nameInput: "",
         surfaceInput: "",
         addressInput: "",
-        architectureInput: 0,
         dateInput: "",
-        architectInput: "",
-        promoterInput: "",
-        builderInput: "",
-        plannerInput: "",
-        urbanistInput: "",
         descriptionInput: "",
         loading: false,
       };
@@ -410,8 +399,13 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         didUserVote: true,
       };
-    default:
-      return state;
+      case SET_CATEGORIES:
+        return {
+          ...state,
+          categories: action.categories,
+        };
+        default:
+        return state;
   }
 };
 
@@ -483,15 +477,6 @@ export const openDataFormResponse = (data) => ({
 
 export const closeAllModals = () => ({
   type: CLOSE_ALL_MODALS,
-});
-
-export const getArchitectures = () => ({
-  type: GET_ARCHITECTURES,
-});
-
-export const setArchitectures = (architectures) => ({
-  type: SET_ARCHITECTURES,
-  architectures,
 });
 
 export const getBuildings = (bounds) => ({
@@ -601,6 +586,15 @@ export const userVote = (id, vote) => ({
   type: USER_VOTE,
   id,
   vote,
+});
+
+export const setCategories = (categories) => ({
+  type: SET_CATEGORIES,
+  categories,
+});
+
+export const getCategories = () => ({
+  type: GET_CATEGORIES,
 });
 /**
  * Selectors

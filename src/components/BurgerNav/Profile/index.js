@@ -99,7 +99,6 @@ Profile.propTypes = {
   passwordConfirmInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
-  isProfileOpen: PropTypes.bool.isRequired,
   closeProfile: PropTypes.func.isRequired,
 };
 

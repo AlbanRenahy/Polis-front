@@ -22,15 +22,8 @@ const mapStateToProps = (state) => ({
   addressInput: state.addressInput,
   styleInput: state.styleInput,
   dateInput: state.dateInput,
-  architectInput: state.architectInput,
-  promoterInput: state.promoterInput,
-  builderInput: state.builderInput,
-  plannerInput: state.plannerInput,
-  urbanistInput: state.urbanistInput,
   descriptionInput: state.descriptionInput,
-  loading: state.loading,
-  architectures: state.architectures,
-  fileInput: state.fileInput,
+  categories: state.categories,
   fileText: state.fileText,
 });
 

@@ -18,14 +18,9 @@ const RenseignementDonnees = ({
   surfaceInput,
   addressInput,
   dateInput,
-  architectInput,
-  promoterInput,
-  builderInput,
-  plannerInput,
-  urbanistInput,
+  categories,
   descriptionInput,
   loading,
-  architectures,
   fileText,
   findAddress,
   resetFormBuilding,
@@ -165,11 +160,12 @@ const RenseignementDonnees = ({
                   <option value={0} defaultValue>
                     -- Catégorie --
                   </option>
-                  {architectures.map((architecture) => (
-                    <option key={architecture.id} value={architecture.id}>
-                      {architecture.name}
-                    </option>
-                  ))}
+                  {console.log(categories)}
+                 {
+                    categories.map((category) => (
+                      <option key={category.id} value={category.id}>{category.name}</option>
+                    ))
+                  }
                 </select>
                 <label htmlFor="style">Style</label>
               </div>
@@ -195,17 +191,6 @@ const RenseignementDonnees = ({
                 <label htmlFor="date">Date</label>
               </div>
             </div>
-            <Input
-              type="text"
-              id="architect"
-              name="architect"
-              placeholder="Ville"
-              value={architectInput}
-              onChangeFunction={(input) =>
-                updateFormField("architectInput", input)
-              }
-              disabled={false}
-            />
 
             <Input
               type="text"
@@ -251,19 +236,12 @@ RenseignementDonnees.propTypes = {
   submitBuilding: PropTypes.func.isRequired,
   closeAllModals: PropTypes.func.isRequired,
   addressInput: PropTypes.string.isRequired,
-  plannerInput: PropTypes.string.isRequired,
-  architectInput: PropTypes.string.isRequired,
-  builderInput: PropTypes.string.isRequired,
   dateInput: PropTypes.string.isRequired,
   isDataFormOpen: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   nameInput: PropTypes.string.isRequired,
-  promoterInput: PropTypes.string.isRequired,
-  surfaceInput: PropTypes.string.isRequired,
   updateFormField: PropTypes.func.isRequired,
-  urbanistInput: PropTypes.string.isRequired,
   descriptionInput: PropTypes.string.isRequired,
-  architectures: PropTypes.array.isRequired,
   fileText: PropTypes.string.isRequired,
   findAddress: PropTypes.func.isRequired,
   resetFormBuilding: PropTypes.func.isRequired,
