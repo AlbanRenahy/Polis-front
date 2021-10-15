@@ -30,6 +30,13 @@ class Leaflet extends React.Component {
     // shadowSize:   [50, 64], // size of the shadow
   });
 
+  componentDidMount() {
+    const {
+      getCategories,
+    } = this.props;
+    getCategories();
+  }
+
   handleRightClick = (e) => {
     const { updateFormField, openDataForm } = this.props;
     console.log(e.latlng);
@@ -108,6 +115,7 @@ Leaflet.propTypes = {
   closeAllModals: PropTypes.func.isRequired,
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
-}
+  getCategories: PropTypes.func.isRequired,
+};
 
 export default Leaflet;

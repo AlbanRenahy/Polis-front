@@ -11,10 +11,10 @@ import {
   openDataForm,
   closeAllModals,
   updateFormField,
-  getArchitectures,
   getBuildings,
   openDisplayBuilding,
   closeMenu,
+  getCategories
 } from "../store/reducer";
 
 const mapStateToProps = (state) => ({
@@ -39,17 +39,17 @@ const mapDispatchToProps = (dispatch) => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-
-  getArchitectures: () => {
-    dispatch(getArchitectures());
-  },
-
+  
   getBuildings: (bounds) => {
     dispatch(getBuildings(bounds));
   },
 
   openDisplayBuilding: (id) => {
     dispatch(openDisplayBuilding(id));
+  },
+
+  getCategories: () => {
+    dispatch(getCategories());
   },
 
   closeMenu: () => {
