@@ -59,22 +59,30 @@ const initialState = {
   tempsDeVisite: [],
 
   // ************FIELDS OF THE CARD DATA*******
-  address: "",
-  certified: false,
-  creationDate: 0,
-  delivered: true,
-  description: "",
-  id: 0,
-  images: [
-    {
+  datas: {
+    infoBuilding: {
       id: 0,
-      path: "",
+      latitude: 0,
+      longitude: 0,
+      nomLieu: "",
+      adresse: "",
+      description: "",
+      ville: "",
+      tempsVisite: "",
+      categorie: "",
+      certified: false,
+      creationDate: 0,
+      delivered: true,
+      images: [
+        {
+          id: 0,
+          path: "",
+        },
+      ],
+      category:"",
+      user: { firstName: "", lastName: "" },
     },
-  ],
-  latitude: 0,
-  longitude: 0,
-  category:"",
-  user: { firstName: "", lastName: "" },
+  },
 
   // ************ERRORS*******
   signinErrors: [],
