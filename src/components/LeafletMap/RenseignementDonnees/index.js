@@ -160,10 +160,9 @@ const RenseignementDonnees = ({
                   <option value={0} defaultValue>
                     -- Catégorie --
                   </option>
-                  {console.log(categories)}
                  {
                     categories.map((category) => (
-                      <option key={category.id} value={category.id}>{category.name}</option>
+                      <option key={category.id} value={category.id}>{category.nomCategorie}</option>
                     ))
                   }
                 </select>
