@@ -56,6 +56,7 @@ const initialState = {
   buildings: [],
   fetchingBuildings: false,
   categories: [],
+  tempsDeVisite: [],
 
   // ************FIELDS OF THE CARD DATA*******
   address: "",
@@ -158,6 +159,8 @@ export const OPEN_MODIFY_PANEL = "OPEN_MODIFY_PANEL";
 export const USER_VOTE = "USER_VOTE";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const SET_TEMPS_VISITE = "SET_TEMPS_VISITE";
+export const GET_TEMPS_VISITE = "GET_TEMPS_VISITE";
 /**
  * Traitements
  */
@@ -404,6 +407,11 @@ const reducer = (state = initialState, action = {}) => {
           ...state,
           categories: action.categories,
         };
+      case SET_TEMPS_VISITE:
+        return {
+          ...state,
+          tempsDeVisite: action.tempsDeVisite,
+        };
         default:
         return state;
   }
@@ -595,6 +603,15 @@ export const setCategories = (categories) => ({
 
 export const getCategories = () => ({
   type: GET_CATEGORIES,
+});
+
+export const setTempsDeVisite = (tempsDeVisite) => ({
+  type: SET_TEMPS_VISITE,
+  tempsDeVisite,
+});
+
+export const getTempsDeVisite = () => ({
+  type: GET_TEMPS_VISITE,
 });
 /**
  * Selectors

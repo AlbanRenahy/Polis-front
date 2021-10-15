@@ -24,6 +24,7 @@ const mapStateToProps = (state) => ({
   dateInput: state.dateInput,
   descriptionInput: state.descriptionInput,
   categories: state.categories,
+  tempsDeVisite: state.tempsDeVisite,
   fileText: state.fileText,
 });
 

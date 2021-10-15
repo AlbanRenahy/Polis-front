@@ -14,7 +14,8 @@ import {
   getBuildings,
   openDisplayBuilding,
   closeMenu,
-  getCategories
+  getCategories,
+  getTempsDeVisite
 } from "../store/reducer";
 
 const mapStateToProps = (state) => ({
@@ -39,7 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateFormField: (fieldName, input) => {
     dispatch(updateFormField(fieldName, input));
   },
-  
+
   getBuildings: (bounds) => {
     dispatch(getBuildings(bounds));
   },
@@ -50,6 +51,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   getCategories: () => {
     dispatch(getCategories());
+  },
+
+  getTempsDeVisite: () => {
+    dispatch(getTempsDeVisite());
   },
 
   closeMenu: () => {

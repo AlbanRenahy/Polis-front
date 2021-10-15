@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Map as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map as LeafletMap, TileLayer, Marker, Circle } from "react-leaflet";
 import L from "leaflet";
 import { geolocated } from "react-geolocated";
 import RenseignementDonnees from "../../containers/RenseignementDonnees";
@@ -31,10 +31,9 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const {
-      getCategories,
-    } = this.props;
+    const { getCategories, getTempsDeVisite } = this.props;
     getCategories();
+    getTempsDeVisite();
   }
 
   handleRightClick = (e) => {
@@ -78,7 +77,6 @@ class Leaflet extends React.Component {
         <Menu />
         <RenseignementDonnees />
         <DisplayBuildingLouvre />
-        <DisplayBuildingNotreDameAmiens />
         <LeafletMap
           center={[48.864716, 2.349014]}
           zoom={12}
@@ -116,6 +114,7 @@ Leaflet.propTypes = {
   openDataForm: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
+  getTempsDeVisite: PropTypes.func.isRequired
 };
 
 export default Leaflet;

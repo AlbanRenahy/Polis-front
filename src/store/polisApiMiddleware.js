@@ -7,6 +7,8 @@ import {
   GET_BUILDINGS,
   GET_CATEGORIES,
   setCategories,
+  GET_TEMPS_VISITE,
+  setTempsDeVisite,
   setBuildings,
   createMarker,
   OPEN_DISPLAY_BUILDING,
@@ -95,6 +97,17 @@ const polisApiMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           // console.log('Categories', response.data['hydra:member']);
           store.dispatch(setCategories(response.data));
+        })
+        .catch((error) => {
+          // console.log(error.message);
+        });
+      break;
+    case GET_TEMPS_VISITE:
+      axios
+        .get(`${polisApi}/tempsDeVisite`)
+        .then((response) => {
+          // console.log('Categories', response.data['hydra:member']);
+          store.dispatch(setTempsDeVisite(response.data));
         })
         .catch((error) => {
           // console.log(error.message);

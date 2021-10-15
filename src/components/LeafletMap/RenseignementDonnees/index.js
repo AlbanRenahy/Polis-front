@@ -19,6 +19,7 @@ const RenseignementDonnees = ({
   addressInput,
   dateInput,
   categories,
+  tempsDeVisite,
   descriptionInput,
   loading,
   fileText,
@@ -160,34 +161,36 @@ const RenseignementDonnees = ({
                   <option value={0} defaultValue>
                     -- Catégorie --
                   </option>
-                 {
-                    categories.map((category) => (
-                      <option key={category.id} value={category.id}>{category.nomCategorie}</option>
-                    ))
-                  }
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.nomCategorie}
+                    </option>
+                  ))}
                 </select>
                 <label htmlFor="style">Style</label>
               </div>
 
               <div className="input-container">
-                <input
-                  className="input"
-                  type="number"
-                  min="1900"
-                  max="2099"
-                  step="1"
-                  value={dateInput}
-                  id="date"
-                  name="date"
-                  placeholder="Année de livraison ou de livraison estimée"
-                  onChange={(e) => {
-                    updateFormField("dateInput", e.target.value);
-                  }}
+                <select
+                  id="style"
+                  name="style"
+                  className="input select-style"
+                  onChange={handleSelectChange}
                   onFocus={(event) => {
                     event.target.classList.add("open");
                   }}
-                />
-                <label htmlFor="date">Date</label>
+                >
+                  <option value={0} defaultValue>
+                    -- Temps de visite --
+                    {console.log(tempsDeVisite)}
+                  </option>
+                  {tempsDeVisite.map((tempsVisite) => (
+                    <option key={tempsVisite.id} value={tempsVisite.id}>
+                      {tempsVisite.horaireVisite}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="date">Temps de Visite</label>
               </div>
             </div>
 
