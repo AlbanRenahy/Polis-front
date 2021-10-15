@@ -30,7 +30,11 @@ const TopMenu = ({
       <ViewToggler />
       <Menu.Menu position="right">
         <div className="ui right aligned category search item">
-          <div className={`ui transparent icon input ${searchInput && 'not-empty'}`}>
+          <div
+            className={`ui transparent icon input ${
+              searchInput && "not-empty"
+            }`}
+          >
             <div className="input-container">
               <input
                 className="input"
@@ -40,7 +44,7 @@ const TopMenu = ({
                 name="search-input"
                 placeholder="Rechercher une adresse"
                 onKeyPress={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     closeAllModals();
                     findAddressSearch();
                   }
@@ -49,7 +53,7 @@ const TopMenu = ({
                   autoComplete(e.target.value);
                 }}
                 onFocus={(event) => {
-                  event.target.classList.add('open');
+                  event.target.classList.add("open");
                 }}
               />
               <label htmlFor="searchInput">Recherche</label>
@@ -62,25 +66,43 @@ const TopMenu = ({
               }}
             />
           </div>
-          <div className={isAutocompleteOpen ? 'results transition visible' : 'results transition'}>
-            {
-              autoCompleteResults.map(address => (
-                <p key={address.properties.id} className="result" onClick={handleSearch([address.geometry.coordinates[1], address.geometry.coordinates[0]])}><span className="city">{address.properties.name}</span>, {address.properties.context}</p>
-              ))
+          <div
+            className={
+              isAutocompleteOpen
+                ? "results transition visible"
+                : "results transition"
             }
+          >
+            {autoCompleteResults.map((address) => (
+              <p
+                key={address.properties.id}
+                className="result"
+                onClick={handleSearch([
+                  address.geometry.coordinates[1],
+                  address.geometry.coordinates[0],
+                ])}
+              >
+                <span className="city">{address.properties.name}</span>,{" "}
+                {address.properties.context}
+              </p>
+            ))}
           </div>
         </div>
       </Menu.Menu>
       <Button
         id="add-button"
         circular
-        onClick={isConnected
-          ? () => {
-            closeAllModals(); openDataForm(false);
-          }
-          : () => {
-            closeAllModals(); openDataForm(false);
-          }}
+        onClick={
+          isConnected
+            ? () => {
+                closeAllModals();
+                openDataForm(false);
+              }
+            : () => {
+                closeAllModals();
+                openDataForm(false);
+              }
+        }
       >
         <Icon.Group>
           <Icon name="map marker alternate" />
@@ -99,9 +121,8 @@ const TopMenu = ({
               fill="transparent"
             />
             <text id="circleText" fill="#000" fontSize=".9em">
-              <textPath id="circleTextPath" href="#cercle"
-                startOffset="70%">
-                 ajouter
+              <textPath id="circleTextPath" href="#cercle" startOffset="70%">
+                ajouter
               </textPath>
             </text>
           </g>

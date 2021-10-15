@@ -5,7 +5,8 @@ import L from "leaflet";
 import { geolocated } from "react-geolocated";
 import RenseignementDonnees from "../../containers/RenseignementDonnees";
 import Menu from "../../containers/Menu";
-import DisplayBuilding from "../../containers/DisplayBuilding";
+import DisplayBuildingLouvre from "../../containers/DisplayBuilding/DisplayBuildingLouvre";
+import DisplayBuildingNotreDameAmiens from "../../containers/DisplayBuilding/DisplayBuildingNotreDameAmiens";
 import Loading from "../Loading";
 import "./leafletmap.scss";
 // pour utiliser des punaises custom
@@ -29,11 +30,6 @@ class Leaflet extends React.Component {
     // shadowSize:   [50, 64], // size of the shadow
   });
 
-  componentDidMount() {
-    const { getArchitectures } = this.props;
-    getArchitectures();
-  }
-
   handleRightClick = (e) => {
     const { updateFormField, openDataForm } = this.props;
     console.log(e.latlng);
@@ -42,7 +38,7 @@ class Leaflet extends React.Component {
     openDataForm(e.latlng);
   };
 
-  handleClickMarker = (e) => {
+  handleClickMarkerLouvre = (e) => {
     const { openDisplayBuilding, closeAllModals } = this.props;
     closeAllModals();
     openDisplayBuilding();
@@ -74,7 +70,8 @@ class Leaflet extends React.Component {
       <>
         <Menu />
         <RenseignementDonnees />
-        <DisplayBuilding />
+        <DisplayBuildingLouvre />
+        <DisplayBuildingNotreDameAmiens />
         <LeafletMap
           center={[48.864716, 2.349014]}
           zoom={12}
@@ -94,9 +91,13 @@ class Leaflet extends React.Component {
           <Marker
             position={[48.864716, 2.349014]}
             icon={this.myPinUne}
+            onClick={this.handleClickMarkerLouvre}
+          ></Marker>
+          <Marker
+            position={[50.864716, 2.349114]}
+            icon={this.myPinUne}
             onClick={this.handleClickMarker}
-          >
-          </Marker>
+          ></Marker>
         </LeafletMap>
       </>
     );

@@ -68,7 +68,7 @@ const polisApiMiddleware = (store) => (next) => (action) => {
     case GET_BUILDINGS:
       setTimeout(() => next(action), 500);
       axios
-        .post(`${polisApi}/buildings`, { bounds: action.bounds })
+        .get(`${polisApi}/lieux`)
         .then((response) => {
           store.dispatch(setBuildings(response.data));
         })
@@ -79,7 +79,7 @@ const polisApiMiddleware = (store) => (next) => (action) => {
     case OPEN_DISPLAY_BUILDING:
       next(action);
       axios
-        .get(`${polisApi}/buildings/${action.id}`)
+        .get(`${polisApi}/lieux/${action.id}`)
         .then((response) => {
           store.dispatch(setBuildingDatas(response.data));
         })
