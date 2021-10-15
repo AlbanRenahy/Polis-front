@@ -5,18 +5,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Dimmer, Loader, Icon } from "semantic-ui-react";
-import MainPicture from "../../../../styles/images/louvre.jpg";
+import MainPicture from "../../../styles/images/louvre.jpg";
 
-import "../../DisplayBuilding/DisplayBuilding.scss";
+import "../DisplayBuilding/DisplayBuilding.scss";
 
 const DisplayBuilding = ({
   isDisplayBuildingOpen,
   closeAllModals,
+  datas,
+  buildings,
   loading,
   didUserVote,
   isModifyPanelOpen,
   isConnected,
 }) => {
+  const {
+      id,
+      latitude,
+      longitude,
+      nomLieu,
+      adresse,
+      description,
+      ville,
+      tempsVisite,
+      categorie,
+      certified,
+      creationDate,
+      delivered,
+      images,
+      category,
+      user,
+  } = datas;
 
   const handleCloseDataForm = (e) => {
     e.preventDefault();
@@ -46,15 +65,15 @@ const DisplayBuilding = ({
               Fermer
             </a>
             <div className="header-info">
-              <h2 className="header-info-name">Musée du Louvre</h2>
+              <h2 className="header-info-name">{nomLieu}</h2>
               <h2 className="header-info-user">
                 Renseigné par <strong>Philibert</strong>
               </h2>
               <h3 className="header-info-address">
-                Rue de Rivoli, 75001 Paris
+                {adresse}
               </h3>
               <div className="header-info-bottom--panel">
-                <p className="header-info-tag">3h de visite</p>
+                <p className="header-info-tag">{tempsVisite}</p>
               </div>
             </div>
           </header>
@@ -62,16 +81,15 @@ const DisplayBuilding = ({
           <div className="panel-description">
             <p className="panel-description-title">Le saviez-vous ?</p>
             <p className="panel-description-text">
-              Musée le plus visité au monde. Il abrite notamment le célèbre
-              tableau de la Joconde, peint par Léonard de Vinci.
+              {description}
             </p>
           </div>
           <hr />
           <div className="panel-builders">
             <ul>
               <li>
-                <p className="information">Cétogorie</p>
-                <p>musée</p>
+                <p className="information">Catégorie</p>
+                <p>{categorie}</p>
               </li>
               <li>
                 <p className="information">Région</p>

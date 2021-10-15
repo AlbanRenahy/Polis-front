@@ -30,7 +30,7 @@ const initialState = {
   // bool qui indique si le formulaire de renseignement de données est ouvert ou non
   isDataFormOpen: false,
   isDisplayBuildingOpen: false, // bool qui toggle l'ouverture de displayBuilding
-  isMenuOpen: false, 
+  isMenuOpen: false,
   didUserVote: false,
 
   // ************MANAGEMENT OF THE MENU**************/
@@ -48,7 +48,7 @@ const initialState = {
   addressInput: "",
   dateInput: "",
   visitTime: 0,
-  categoryInput: {id: 0},
+  categoryInput: { id: 0 },
   descriptionInput: "",
   loading: false,
 
@@ -59,8 +59,6 @@ const initialState = {
   tempsDeVisite: [],
 
   // ************FIELDS OF THE CARD DATA*******
-  datas: {
-    infoBuilding: {
       id: 0,
       latitude: 0,
       longitude: 0,
@@ -79,10 +77,8 @@ const initialState = {
           path: "",
         },
       ],
-      category:"",
+      category: "",
       user: { firstName: "", lastName: "" },
-    },
-  },
 
   // ************ERRORS*******
   signinErrors: [],
@@ -91,28 +87,31 @@ const initialState = {
   newPasswordErrors: [],
 
   datas: {
-    infoBuilding: {
-      address: "",
+      id: 0,
+      latitude: 0,
+      longitude: 0,
+      nomLieu: "",
+      adresse: "",
+      description: "",
+      ville: "",
+      tempsVisite:
+        {
+          id: 0,
+          name: "",
+        },
+      categorie: "",
       certified: false,
       creationDate: 0,
-      visitTime: 0,
       delivered: true,
-      description: "",
-      id: 0,
       images: [
         {
           id: 0,
           path: "",
         },
       ],
-      latitude: 0,
-      longitude: 0,
-      name: "",
-      category: {id: 0},
+      category: "",
       user: { firstName: "", lastName: "" },
     },
-    total_votes: 0,
-  },
   // Autocomplete results
   autoCompleteResults: [],
   isAutocompleteOpen: false,

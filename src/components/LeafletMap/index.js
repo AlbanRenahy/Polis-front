@@ -10,8 +10,7 @@ import L from "leaflet";
 import { geolocated } from "react-geolocated";
 import RenseignementDonnees from "../../containers/RenseignementDonnees";
 import Menu from "../../containers/Menu";
-import DisplayBuildingLouvre from "../../containers/DisplayBuilding/DisplayBuildingLouvre";
-import DisplayBuildingNotreDameAmiens from "../../containers/DisplayBuilding/DisplayBuildingNotreDameAmiens";
+import DisplayBuildingLouvre from "../../containers/DisplayBuilding";
 import Loading from "../Loading";
 import "./leafletmap.scss";
 // pour utiliser des punaises custom
@@ -54,7 +53,7 @@ class Leaflet extends React.Component {
     const { openDisplayBuilding, closeAllModals, buildings } = this.props;
     const { id } = e.target.options;
     closeAllModals();
-    openDisplayBuilding();
+    openDisplayBuilding(id);
   };
 
 
