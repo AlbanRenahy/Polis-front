@@ -70,8 +70,8 @@ class Leaflet extends React.Component {
     } = this.props;
 
     const defaultCenter = coords
-      ? [coords.latitude, coords.longitude]
-      : [46.7248003746672, 2.9003906250000004];
+      ? [50.63075311145313, 3.067238331277622]
+      : [50.63075311145313, 3.067238331277622];
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions

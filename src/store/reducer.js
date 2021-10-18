@@ -94,11 +94,7 @@ const initialState = {
       adresse: "",
       description: "",
       ville: "",
-      tempsVisite:
-        {
-          id: 0,
-          name: "",
-        },
+      tempsVisite: "",
       categorie: "",
       certified: false,
       creationDate: 0,

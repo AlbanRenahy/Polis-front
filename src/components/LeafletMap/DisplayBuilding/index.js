@@ -24,6 +24,7 @@ const DisplayBuilding = ({
       latitude,
       longitude,
       nomLieu,
+      image,
       adresse,
       description,
       ville,
@@ -54,7 +55,7 @@ const DisplayBuilding = ({
             <div
               className="header-picture"
               style={{
-                backgroundImage: `url(${MainPicture})`,
+                backgroundImage: `url(${image})`,
               }}
             />
             <a
@@ -89,7 +90,7 @@ const DisplayBuilding = ({
             <ul>
               <li>
                 <p className="information">Catégorie</p>
-                <p>{categorie}</p>
+                <p>{category}</p>
               </li>
               <li>
                 <p className="information">Région</p>
