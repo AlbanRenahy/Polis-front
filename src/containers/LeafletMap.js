@@ -24,6 +24,7 @@ const mapStateToProps = (state) => ({
   zoom: state.zoom,
   userLocalized: state.userLocalized,
   loadingWithLoader: state.loadingWithLoader,
+  currentCard: state.currentCard,
   isConnected: state.isConnected,
   fetchingBuildings: state.fetchingBuildings,
 });

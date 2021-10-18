@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Map as LeafletMap, TileLayer, Marker, Circle } from "react-leaflet";
+import {
+  Map as LeafletMap,
+  TileLayer,
+  Marker,
+  MarkerClusterGroup,
+} from "react-leaflet";
 import L from "leaflet";
 import { geolocated } from "react-geolocated";
 import RenseignementDonnees from "../../containers/RenseignementDonnees";
 import Menu from "../../containers/Menu";
-import DisplayBuildingLouvre from "../../containers/DisplayBuilding/DisplayBuildingLouvre";
-import DisplayBuildingNotreDameAmiens from "../../containers/DisplayBuilding/DisplayBuildingNotreDameAmiens";
+import DisplayBuildingLouvre from "../../containers/DisplayBuilding";
 import Loading from "../Loading";
 import "./leafletmap.scss";
 // pour utiliser des punaises custom
@@ -31,11 +35,12 @@ class Leaflet extends React.Component {
   });
 
   componentDidMount() {
-    const { getCategories, getTempsDeVisite } = this.props;
+    const { getCategories, getTempsDeVisite, getBuildings } = this.props;
     getCategories();
     getTempsDeVisite();
+    getBuildings();
   }
-
+  
   handleRightClick = (e) => {
     const { updateFormField, openDataForm } = this.props;
     console.log(e.latlng);
@@ -43,15 +48,17 @@ class Leaflet extends React.Component {
     updateFormField("clickedLng", e.latlng.lng);
     openDataForm(e.latlng);
   };
-
-  handleClickMarkerLouvre = (e) => {
-    const { openDisplayBuilding, closeAllModals } = this.props;
+  
+  handleClickMarker = (e) => {
+    const { openDisplayBuilding, closeAllModals, buildings } = this.props;
+    const { id } = e.target.options;
     closeAllModals();
-    openDisplayBuilding();
+    openDisplayBuilding(id);
   };
 
+
   render() {
-    const { closeAllModals } = this.props;
+    const { closeAllModals, buildings } = this.props;
     const {
       coords,
       isGeolocationEnabled,
@@ -59,12 +66,12 @@ class Leaflet extends React.Component {
       zoom,
       userLocalized,
       updateFormField,
-      loadingWithLoader,
+      loadingWithLoader
     } = this.props;
 
     const defaultCenter = coords
-      ? [coords.latitude, coords.longitude]
-      : [46.7248003746672, 2.9003906250000004];
+      ? [50.63075311145313, 3.067238331277622]
+      : [50.63075311145313, 3.067238331277622];
 
     if (isGeolocationEnabled && coords && !userLocalized) {
       // eslint-disable-next-line no-unused-expressions
@@ -74,6 +81,7 @@ class Leaflet extends React.Component {
     }
     return (
       <>
+        {console.log(buildings)}
         <Menu />
         <RenseignementDonnees />
         <DisplayBuildingLouvre />
@@ -93,16 +101,16 @@ class Leaflet extends React.Component {
         >
           <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
 
-          <Marker
-            position={[48.864716, 2.349014]}
-            icon={this.myPinUne}
-            onClick={this.handleClickMarkerLouvre}
-          ></Marker>
-          <Marker
-            position={[50.864716, 2.349114]}
-            icon={this.myPinUne}
-            onClick={this.handleClickMarker}
-          ></Marker>
+         {console.log(buildings)}
+            {buildings.map(({ latitude, longitude, id }) => (
+              <Marker
+              position={[latitude, longitude]}
+              icon={this.myPinUne}
+              key={id}
+              id={id}
+              onClick={this.handleClickMarker}
+              />
+            ))}
         </LeafletMap>
       </>
     );
