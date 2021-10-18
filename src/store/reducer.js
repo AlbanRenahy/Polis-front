@@ -17,7 +17,7 @@ const initialState = {
   loginStatus: "init", // string : not-connected || connecting || connected || disconneced, for logic purposes
 
   // *********MANAGEMENT OF THE GEOLOCALIZATION*********/
-  center: [46.7248003746672, 2.9003906250000004], // Center of the map
+  center: [50.63075311145313, 3.067238331277622], // Center of the map
   zoom: 6, // level of zoom
   userLocalized: false,
   actualBounds: {
@@ -59,26 +59,26 @@ const initialState = {
   tempsDeVisite: [],
 
   // ************FIELDS OF THE CARD DATA*******
+  id: 0,
+  latitude: 0,
+  longitude: 0,
+  nomLieu: "",
+  adresse: "",
+  description: "",
+  ville: "",
+  tempsVisite: "",
+  categorie: "",
+  certified: false,
+  creationDate: 0,
+  delivered: true,
+  images: [
+    {
       id: 0,
-      latitude: 0,
-      longitude: 0,
-      nomLieu: "",
-      adresse: "",
-      description: "",
-      ville: "",
-      tempsVisite: "",
-      categorie: "",
-      certified: false,
-      creationDate: 0,
-      delivered: true,
-      images: [
-        {
-          id: 0,
-          path: "",
-        },
-      ],
-      category: "",
-      user: { firstName: "", lastName: "" },
+      path: "",
+    },
+  ],
+  category: "",
+  user: { firstName: "", lastName: "" },
 
   // ************ERRORS*******
   signinErrors: [],
@@ -87,27 +87,27 @@ const initialState = {
   newPasswordErrors: [],
 
   datas: {
-      id: 0,
-      latitude: 0,
-      longitude: 0,
-      nomLieu: "",
-      adresse: "",
-      description: "",
-      ville: "",
-      tempsVisite: "",
-      categorie: "",
-      certified: false,
-      creationDate: 0,
-      delivered: true,
-      images: [
-        {
-          id: 0,
-          path: "",
-        },
-      ],
-      category: "",
-      user: { firstName: "", lastName: "" },
-    },
+    id: 0,
+    latitude: 0,
+    longitude: 0,
+    nomLieu: "",
+    adresse: "",
+    description: "",
+    ville: "",
+    tempsVisite: "",
+    categorie: "",
+    certified: false,
+    creationDate: 0,
+    delivered: true,
+    images: [
+      {
+        id: 0,
+        path: "",
+      },
+    ],
+    category: "",
+    user: { firstName: "", lastName: "" },
+  },
   // Autocomplete results
   autoCompleteResults: [],
   isAutocompleteOpen: false,

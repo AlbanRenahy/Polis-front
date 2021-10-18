@@ -9,66 +9,63 @@ import BurgerNav from "../../../containers/BurgerNav";
 import MainPicture from "../../../styles/images/louvre.jpg";
 
 import "./suggestions.scss";
+import { bounds } from "leaflet";
 
 class Liste extends Component {
   // {buildings, listData, loading, getBuildingsListData} = this.props;
   // { buildingsData } = getBuildingsListData(buildings);
   componentDidMount() {
-    const { buildings, getBuildingsListData } = this.props;
-    getBuildingsListData(buildings);
+    const { buildings, getBuildings } = this.props;
+    getBuildings(buildings);
   }
 
   render() {
-    const { listData, loading } = this.props;
+    const { buildings, loading } = this.props;
     return (
       <div id="liste">
         <BurgerNav />
+        {console.log(buildings)};
         <ViewToggler />
-        {listData && (
+        {buildings && (
           <Card.Group>
-            <Card className="card">
-              <Image src={MainPicture} wrapped ui={false} />
-              <Card.Content>
-                <Card.Header>Musée du Louvre</Card.Header>
-                <Card.Meta></Card.Meta>
-                <Card.Description>Rue de Rivoli</Card.Description>
-                <div className="panel-builders">
-                  <ul>
-                    <li>
-                      <p className="construction">Renseigné par</p>
-                      <p>Philibert</p>
-                    </li>
-                    <li>
-                      <p className="construction">Catégorie</p>
-                      <p>
-                        Musée <a>éditer</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="construction">Temps de visite estimé</p>
-                      <p>
-                        3 heures <a>éditer</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="amenagement">Les saviez-vous?</p>
-                      <p>
-                        Musée le plus visité au monde. Il abrite notamment le
-                        célèbre tableau de la Joconde, peint par Léonard de
-                        Vinci. <a>éditer</a>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              </Card.Content>
-              <p>
-                Musée le plus visité au monde.
-              </p>
-              <Card.Content extra>
-                Il abrite notamment le célèbre tableau de la Joconde, peint par
-                Léonard de Vinci.
-              </Card.Content>
-            </Card>
+            {buildings.map((item) => (
+              <Card className="card">
+                <Image src={item.image} wrapped ui={false} />
+                <Card.Content>
+                  <Card.Header>{item.nomLieu}</Card.Header>
+                  <Card.Meta></Card.Meta>
+                  <Card.Description>{item.adresse}</Card.Description>
+                  <div className="panel-builders">
+                    <ul>
+                      <li>
+                        <p className="construction">Renseigné par</p>
+                        <p>Philibert</p>
+                      </li>
+                      <li>
+                        <p className="construction">Catégorie</p>
+                        <p>
+                          {item.category} <a>éditer</a>
+                        </p>
+                      </li>
+                      <li>
+                        <p className="construction">Temps de visite estimé</p>
+                        <p>
+                         {item.tempsVisite} <a>éditer</a>
+                        </p>
+                      </li>
+                      <li>
+                        <p className="amenagement">Les saviez-vous?</p>
+                        <p>
+                          {item.description} <a>éditer</a>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </Card.Content>
+                <Card.Content extra>
+                </Card.Content>
+              </Card>
+            ))}
           </Card.Group>
         )}
         <div className="back-to-map">
