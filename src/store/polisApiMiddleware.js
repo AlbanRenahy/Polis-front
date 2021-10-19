@@ -24,7 +24,7 @@ const polisApiMiddleware = (store) => (next) => (action) => {
       next(action);
       axios
         .post(
-          `${polisApi}/createBuilding`,
+          `${polisApi}/lieux`,
           {
             latitude: store.getState().clickedLat,
             longitude: store.getState().clickedLng,
@@ -52,7 +52,7 @@ const polisApiMiddleware = (store) => (next) => (action) => {
             certified: false,
           },
           {
-            withCredentials: true,
+            withCredentials: false,
           }
         )
         .then((response) => {
