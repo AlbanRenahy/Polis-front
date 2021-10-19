@@ -1,3 +1,4 @@
+import { bounds } from "leaflet";
 import { connect } from "react-redux";
 
 /**
@@ -6,7 +7,7 @@ import { connect } from "react-redux";
 import Suggestions from "../components/LeafletMap/Suggestions";
 
 // Action Creators
-import { getBuildingsListData } from "../store/reducer";
+import { getBuildings } from "../store/reducer";
 
 const mapStateToProps = (state) => ({
   buildings: state.buildings,
@@ -15,8 +16,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getBuildingsListData: (list) => {
-    dispatch(getBuildingsListData(list));
+  getBuildings: (bounds) => {
+    dispatch(getBuildings(bounds));
   },
   // connectUser: () => {
   //   dispatch(connectUser());
